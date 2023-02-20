@@ -40,6 +40,7 @@ class Route53Wrapper {
         const domainInfo = domain.domainInfo ?? {
             domainName: domain.givenDomainName,
             hostedZoneId: route53HostedZoneId,
+            domainNameCloudflare : domain.givenDomainNameCloudflare,
         };
 
         let routingOptions = {};
@@ -69,13 +70,13 @@ class Route53Wrapper {
             hostedZoneIds = [route53HostedZoneId];
         }
 
-        const recordsToCreate = domain.createRoute53IPv6Record ? ["A", "AAAA"] : ["A"];
+        const recordsToCreate = ["CNAME"];
         for (const hostedZoneId of hostedZoneIds) {
             const changes = recordsToCreate.map((Type) => ({
                 Action: action,
                 ResourceRecordSet: {
                     AliasTarget: {
-                        DNSName: domainInfo.domainName,
+                        DNSName: domainInfo.domainNameCloudflare,
                         EvaluateTargetHealth: false,
                         HostedZoneId: domainInfo.hostedZoneId,
                     },

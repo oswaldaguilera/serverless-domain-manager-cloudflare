@@ -6,6 +6,7 @@ class DomainInfo {
     public domainName: string;
     public hostedZoneId: string;
     public securityPolicy: string;
+    public domainNameCloudflare: string;
 
     /**
      * Sometimes, the getDomainName call doesn't return either a distributionHostedZoneId or a regionalHostedZoneId.
@@ -32,6 +33,8 @@ class DomainInfo {
         this.securityPolicy = data.securityPolicy
             || data.DomainNameConfigurations && data.DomainNameConfigurations[0].SecurityPolicy
             || this.defaultSecurityPolicy;
+
+        this.domainNameCloudflare = data.domainNameCloudflare
     }
 }
 

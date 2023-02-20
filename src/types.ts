@@ -9,6 +9,7 @@ export interface Route53Params {
 
 export interface CustomDomain {
     domainName: string;
+    domainNameCloudflare: string;
     basePath: string | undefined;
     stage: string | undefined;
     certificateName: string | undefined;

@@ -10,6 +10,7 @@ import ApiGatewayMap = require("./api-gateway-map");
 
 class DomainConfig {
     public givenDomainName: string;
+    public givenDomainNameCloudflare: string;
     public basePath: string | undefined;
     public baseStage: string | undefined;
     public stage: string | undefined;
@@ -41,6 +42,7 @@ class DomainConfig {
 
         this.enabled = evaluateBoolean(config.enabled, true);
         this.givenDomainName = config.domainName;
+        this.givenDomainNameCloudflare = config.domainNameCloudflare;
         this.certificateArn = config.certificateArn;
         this.certificateName = config.certificateName;
         this.createRoute53Record = evaluateBoolean(config.createRoute53Record, true);
